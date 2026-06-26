@@ -104,4 +104,22 @@ Use the preprocessed dataset prefix, not the original `.jsonl.gz`, as the traini
 - Start from an Evo2 long-context checkpoint as the base model.
 - Use this corpus for LoRA continue-pretraining.
 - Context length is a training configuration choice; do not pre-split the JSONL into fixed windows.
-- Track validation loss overall and stratified by `genome`, `human_priority`, and sequence length using the manifest.
+
+## Requested training report metrics
+
+Please report only the following core metrics for the first training handoff:
+
+1. Training loss curve.
+   - Include steps or tokens seen on the x-axis.
+   - Include learning rate if available.
+
+2. Viral species-holdout validation loss / perplexity.
+   - Report the overall value on `data/valid.jsonl.gz`.
+   - Also report the same metric stratified by the manifest column `genome`, for example `ssRNA(+)`, `ssRNA(-)`, `dsRNA`, `dsDNA`, and `ssDNA`.
+
+3. Base Evo2 versus viral LoRA comparison on the same validation set.
+   - Evaluate the base Evo2 checkpoint on `data/valid.jsonl.gz`.
+   - Evaluate the viral LoRA model on the same `data/valid.jsonl.gz`.
+   - Report the absolute and relative change in validation loss / perplexity.
+
+No bacterial/phage retention metric is required for the first report if bacterial or prokaryotic tasks will use the base Evo2 model without loading the viral LoRA adapter.
