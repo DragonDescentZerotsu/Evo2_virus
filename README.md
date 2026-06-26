@@ -137,5 +137,3 @@ Please report only the following core metrics for the first training handoff:
    - Evaluate the base Evo2 checkpoint on `data/valid.jsonl.gz`.
    - Evaluate the viral LoRA model on the same `data/valid.jsonl.gz`.
    - Report the absolute and relative change in validation loss / perplexity.
-
-No bacterial/phage retention metric is required for the first report if bacterial or prokaryotic tasks will use the base Evo2 model without loading the viral LoRA adapter.
