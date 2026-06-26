@@ -99,6 +99,22 @@ savanna/data_config_viral_lora.json
 
 Use the preprocessed dataset prefix, not the original `.jsonl.gz`, as the training data path.
 
+## Context length
+
+The context length is not specified in `savanna/data_config_viral_lora.json`. That file only specifies dataset paths and tokenizer settings.
+
+Set the context length in the Evo2/Savanna training config used by the training team. Depending on the exact config template, this field may be named `seq_length`, `seq-length`, `context_length`, or similar.
+
+For the first LoRA model-selection run, use:
+
+```text
+context length = 16,384 tokens
+```
+
+If memory or throughput is limiting, `8,192` tokens is acceptable. If resources are comfortable, `32,768` tokens is a useful ablation. Do not use 1M context as the default first run; it is much more expensive and most records in this viral corpus are far shorter than 1M.
+
+Please report the exact context length used together with the training loss curve and validation metrics.
+
 ## Recommended training use
 
 - Start from an Evo2 long-context checkpoint as the base model.
