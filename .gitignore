@@ -1,0 +1,18 @@
+# Ignore everything by default. This repository is a minimal training handoff,
+# not the full data-generation workspace.
+*
+
+# Keep repository docs and exact training artifacts only.
+!/.gitignore
+!/README.md
+
+!/data/
+!/data/train.jsonl.gz
+!/data/valid.jsonl.gz
+
+!/metadata/
+!/metadata/eukaryotic_host_core_manifest.tsv.gz
+
+!/savanna/
+!/savanna/preprocess_commands.sh
+!/savanna/data_config_viral_lora.json
