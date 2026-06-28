@@ -4,6 +4,16 @@ This repository contains the minimal data handoff for Evo2 LoRA continue-pretrai
 
 Use only the files in this repository for the first training run.
 
+## Target model
+
+The target model for this training handoff is:
+
+```text
+Evo2 40B
+```
+
+Use an Evo2 40B long-context checkpoint as the base model and train a viral LoRA adapter on top of it. Do not use Evo2 7B as the main training target unless it is explicitly being run as a separate small-scale ablation.
+
 ## Files
 
 | Path | Use |
@@ -117,7 +127,7 @@ Please report the exact context length used together with the training loss curv
 
 ## Recommended training use
 
-- Start from an Evo2 long-context checkpoint as the base model.
+- Start from an Evo2 40B long-context checkpoint as the base model.
 - Use this corpus for LoRA continue-pretraining.
 - Context length is a training configuration choice; do not pre-split the JSONL into fixed windows.
 
@@ -133,7 +143,7 @@ Please report only the following core metrics for the first training handoff:
    - Report the overall value on `data/valid.jsonl.gz`.
    - Also report the same metric stratified by the manifest column `genome`, for example `ssRNA(+)`, `ssRNA(-)`, `dsRNA`, `dsDNA`, and `ssDNA`.
 
-3. Base Evo2 versus viral LoRA comparison on the same validation set.
-   - Evaluate the base Evo2 checkpoint on `data/valid.jsonl.gz`.
-   - Evaluate the viral LoRA model on the same `data/valid.jsonl.gz`.
+3. Base Evo2 40B versus viral LoRA comparison on the same validation set.
+   - Evaluate the base Evo2 40B checkpoint on `data/valid.jsonl.gz`.
+   - Evaluate the Evo2 40B + viral LoRA model on the same `data/valid.jsonl.gz`.
    - Report the absolute and relative change in validation loss / perplexity.
