@@ -51,9 +51,11 @@ For segmented viruses, each segment is one document. Segments from the same `gen
 | Split | Records | Bases | Species | Human-priority records |
 |---|---:|---:|---:|---:|
 | train | 12,944 | 171,790,984 | 7,621 | 715 |
-| valid | 1,349 | 17,266,753 | 848 | 36 |
+| valid | 1,348 | 16,656,720 | 848 | 36 |
 
 There is no separate test set. The validation set is a species-holdout split relative to train.
+
+One validation record, `KF740664.1|ictv:VMR1024671`, was removed because it is an exact full-sequence match to an OpenGenome2 IMG/VR training document.
 
 After choosing the training recipe, the validation set can be folded back into train for a final adapter run. If this is done, do not report that same set as an unbiased validation/test set.
 
